@@ -1,18 +1,18 @@
-import json
-from textblob import TextBlob
+from sentiment_analyzer_class import SentimentAnalyzer
+import json 
 import numpy as np
-from repustate import Client
-import seaborn as sns
-from numpy import array
-import matplotlib.pyplot as plt
-import sentiment_analyzer_class
 
+# Loading the comments of some users.
+user_comments = json.loads(open('comentarios1.json', encoding="utf8").read())
 
-arreglo = json.loads(open('comentarios1.json', encoding="utf8").read())
+# Creating a sentiment_analyzer object.
+sentiment_analyzer = SentimentAnalyzer(client_api_key = 'c53d0c7b21b8afb62c4c112a9f4f1070ee6ff308', 
+	                                   client_version = 'v4')
 
+print(sentiment_analyzer.get_scores_list(comments = user_comments))
+'''
 
-sentiment_analyzer = sentiment_analyzer_class.Sentiment_Analyzer()
-analyzer = sentiment_analyzer.get_scores_list(arreglo)
+analyzer = sentiment_analyzer.get_scores_list(user_comments)
 percentage_neutral = sentiment_analyzer.calculate_percentage_neutral()
 percentage_positive = sentiment_analyzer.calculate_percentage_positive()
 percentage_negative = sentiment_analyzer.calculate_percentage_negative()
@@ -27,12 +27,12 @@ print('-----------------------------')
 print('Total:', percentage_positive + percentage_negative + percentage_neutral)
 
 
-scores_array = array(analyzer)
+scores_array = np.array(analyzer)
 sns.set()
 ax = sns.distplot(scores_array)
 print(scores_array)
 plt.show()
-
+'''
 
 """ info = json.dumps(arreglo1)
 listaNueva = []

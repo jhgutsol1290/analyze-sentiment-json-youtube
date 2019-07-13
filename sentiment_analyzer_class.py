@@ -1,26 +1,44 @@
 import json
-from textblob import TextBlob
 import numpy as np
-from repustate import Client
+from matplotlib import pyplot as plt 
 import seaborn as sns
-from numpy import array
-import matplotlib.pyplot as plt
+from textblob import TextBlob
+from repustate import Client
 
-client = Client(api_key='c53d0c7b21b8afb62c4c112a9f4f1070ee6ff308', version='v4')
+class YoutubeClient:
+  """
+  This cass initializes a Youtube client 
+  with an specific `api_key`.
+  """
 
-class Sentiment_Analyzer():
-  def __init__(self, scores_list = []):
-    self.scores_list = scores_list
+  def __init__(self, client_api_key, client_version):
+    """
+    Creating a Youtube client. 
+    """
+    self.api_client = Client(api_key = client_api_key, version = client_version)
 
+
+class SentimentAnalyzer(YoutubeClient):
+  """
+  This class inherits the data and methods 
+  from the class `YoutubeClient`.
+  """
+  
+  '''
   def get_scores_list(self, comments):
-    listaNueva = []
+    """
+    This method obtains
+    """
+
+    listaNueva = [element["commentText"] for element in comments]
     scores = []
     new_scores_list = []
-    for elemento in comments:
-      listaNueva.append(elemento['commentText'])
+    
     for comment in listaNueva:
-      score = client.sentiment(comment, lang='es')
+      score = self.api_client.sentiment(comment, lang='es')
       scores.append(score)
+
+    print("scores: {}".format(scores))
     self.scores_list = [score['score'] for score in scores]
     for score in self.scores_list:
       if score == 0:
@@ -28,6 +46,23 @@ class Sentiment_Analyzer():
       else:
         new_scores_list.append(score)
     return new_scores_list
+  '''
+
+  def get_sentiment_score(self, comments):
+    """
+    This method obtains the sentiment score
+    of various comments of many users.
+    """
+
+    # Obtaining the comments of the users.
+    comments_list = [element["commentText"] for element in comments]
+
+    # Obtaining the sentiment score for each comment.
+    sentiment_score = [self.api_client.sentiment(comment, lang = "es")["score"] 
+                       for comment in comments_list
+                       if self.api_client.sentiment(comment, lang = "es")["score"] != 0]
+    
+    return sentiment_score
 
   def calculate_percentage_neutral(self):
     total = len(self.scores_list)
