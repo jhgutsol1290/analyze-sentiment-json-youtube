@@ -9,7 +9,9 @@ user_comments = json.loads(open('comentarios1.json', encoding="utf8").read())
 sentiment_analyzer = SentimentAnalyzer(client_api_key = 'c53d0c7b21b8afb62c4c112a9f4f1070ee6ff308', 
 	                                   client_version = 'v4')
 
-print(sentiment_analyzer.get_scores_list(comments = user_comments))
+print(sentiment_analyzer.get_sentiment_score(comments = user_comments))
+print(sentiment_analyzer.get_neutral_sentiment_percentage())
+print(sentiment_analyzer.get_positive_negative_sentiment_percentage())
 '''
 
 analyzer = sentiment_analyzer.get_scores_list(user_comments)

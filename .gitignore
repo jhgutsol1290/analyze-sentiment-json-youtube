@@ -1,1 +1,11 @@
-./__pycache__
+__pycache__/
+my_venv/Lib/site-packages/Django-2.2.3.dist-info/
+my_venv/Lib/site-packages/django/
+my_venv/Lib/site-packages/djangorestframework-3.10.1.dist-info/
+my_venv/Lib/site-packages/rest_framework/
+my_venv/Lib/site-packages/sqlparse-0.3.0.dist-info/
+my_venv/Lib/site-packages/sqlparse/
+my_venv/Scripts/__pycache__/
+my_venv/Scripts/django-admin.exe
+my_venv/Scripts/django-admin.py
+my_venv/Scripts/sqlformat.exe
