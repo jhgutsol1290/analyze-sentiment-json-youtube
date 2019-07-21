@@ -1,4 +1,4 @@
-from sentiment_analyzer_class import SentimentAnalyzer
+from youtube_client import SentimentAnalyzer
 import json 
 import numpy as np
 
