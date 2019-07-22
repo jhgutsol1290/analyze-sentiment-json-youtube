@@ -5,3 +5,4 @@ textblob
 repustate
 django
 djangorestframework
+django-rest-auth
