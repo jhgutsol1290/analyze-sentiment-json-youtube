@@ -78,23 +78,3 @@ class SentimentAnalyzer(YoutubeClient):
     negative_percentage = (len(negative_scores) * 100) / total_scores
 
     return positive_percentage, negative_percentage 
-
-"""
-  def calculate_percentage_positive(self):
-    total = len(self.scores_list)
-    positive = []
-    for score in self.scores_list:
-      if score > 0:
-        positive.append(score)
-    positive_result = len(positive) * 100 / total
-    return positive_result
-  
-  def calculate_percentage_negative(self):
-    total = len(self.scores_list)
-    negative = []
-    for score in self.scores_list:
-      if score < 0:
-        negative.append(score)
-    negative_result = len(negative) * 100 / total
-    return negative_result
-  """
